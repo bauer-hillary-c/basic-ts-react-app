@@ -28,6 +28,12 @@ const ToDoList: React.SFC<{}> = () => {
     setTodos(newToDos)
   }
 
+  const removeTodo = (index: number) => {
+    const newToDos: ToDoInterface[] = [...todos]
+    newToDos.splice(index, 1)
+    setTodos(newToDos)
+  }
+
   return (
     <Fragment>
       <h1>Todo List</h1>
@@ -48,6 +54,9 @@ const ToDoList: React.SFC<{}> = () => {
             </div>
             <button type="button" onClick={() => completeTodo(index)}>
               {todo.complete ? 'Mark Incomplete' : 'Mark Complete'}
+            </button>
+            <button type="button" onClick={() => removeTodo(index)}>
+              Remove
             </button>
           </Fragment>
         ))}
