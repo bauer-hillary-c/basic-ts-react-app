@@ -22,7 +22,12 @@ const ToDoList: React.SFC<{}> = () => {
     setTodos(newToDos)
   }
 
-    console.log(todos)
+  const completeTodo = (index: number) => {
+    const newToDos: ToDoInterface[] = [...todos]
+    newToDos[index].complete = !newToDos[index].complete
+    setTodos(newToDos)
+  }
+
   return (
     <Fragment>
       <h1>Todo List</h1>
@@ -36,9 +41,16 @@ const ToDoList: React.SFC<{}> = () => {
         <button type='submit'>Add Todo</button>
       </form>
       <section>
-        {todos.map((todo: ToDoInterface, index: number) =>
-          <div key={index}>{todo.text}</div>
-        )}
+        {todos.map((todo: ToDoInterface, index: number) => (
+          <Fragment key={index}>
+            <div style={{ textDecoration: todo.complete ? 'line-through' : ''}}>
+              {todo.text}
+            </div>
+            <button type="button" onClick={() => completeTodo(index)}>
+              {todo.complete ? 'Mark Incomplete' : 'Mark Complete'}
+            </button>
+          </Fragment>
+        ))}
       </section>
     </Fragment>
   )
