@@ -35,6 +35,11 @@ const ToDoList: React.SFC<{}> = () => {
         />
         <button type='submit'>Add Todo</button>
       </form>
+      <section>
+        {todos.map((todo: ToDoInterface, index: number) =>
+          <div key={index}>{todo.text}</div>
+        )}
+      </section>
     </Fragment>
   )
 }
